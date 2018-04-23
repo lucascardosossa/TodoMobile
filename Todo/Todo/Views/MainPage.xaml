@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Todo.Views.MainPage" Title="{Binding Title}">
+    
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Text="TODO MOBILE" />
+        <Entry x:Name="usuario" HorizontalOptions="FillAndExpand" Placeholder="Usuário"/>
+        <Entry x:Name="senha" HorizontalOptions="FillAndExpand" IsPassword="true" Placeholder="Senha"/>
+        <Button x:Name="login" Command="fazerLogin" Text="Entrar"/>
+    </StackLayout>
+    
+</ContentPage>

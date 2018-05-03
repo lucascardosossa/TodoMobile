@@ -32,6 +32,7 @@ namespace Todo
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<TodoList, TodoListViewModel>();
+            containerRegistry.RegisterForNavigation<TodoCreate, TodoCreateViewModel>();
         }
     }
 }

@@ -2,29 +2,29 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    NavigationPage.HasBackButton="False"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     xmlns:local="clr-namespace:Todo.Views"
     xmlns:view="clr-namespace:Todo.Views;assembly=Todo"
     prism:ViewModelLocator.AutowireViewModel="True"
-    x:Class="Todo.Views.TodoList">
+    x:Class="Todo.Views.TodoList"
+    Title="{Binding Title}" >
 
-    <StackLayout Orientation="Vertical">
-        <Label Text="{Binding Title}"
-               VerticalOptions="Start"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               BackgroundColor="Transparent"
-               HorizontalOptions="CenterAndExpand" />
-        <ListView x:Name="listView"  
-              RowHeight="120" 
-              ItemsSource="{Binding TodoCollection}" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <view:TodoItem />
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+        <StackLayout Orientation="Vertical">
+            <Button Text="Nova Tarefa" Command="{Binding NovoCommand}" BackgroundColor="Green" 
+                    TextColor="White" Margin="12" HorizontalOptions="FillAndExpand"/>
+            <ListView x:Name="listView"  
+                  RowHeight="120" 
+                  ItemsSource="{Binding TodoCollection}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <view:TodoItem />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    
 </ContentPage>

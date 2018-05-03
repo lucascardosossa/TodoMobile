@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Prism.Navigation;
 using Todo.Model.Entidade;
+using Prism.Services;
+using Prism.Commands;
 
 namespace Todo.ViewModels
 {
@@ -10,9 +12,13 @@ namespace Todo.ViewModels
     {
         public IList<TodoDTO> TodoCollection { get; set; }
 
-        public TodoListViewModel(INavigationService navigationService) : base(navigationService)
+        public DelegateCommand NovoCommand { get; set; }
+
+        public TodoListViewModel(INavigationService navigationService, IPageDialogService dialogService) 
+            : base(navigationService, dialogService)
         {
             TodoCollection = new List<TodoDTO>();
+            NovoCommand = new DelegateCommand(Novo);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -20,6 +26,11 @@ namespace Todo.ViewModels
             base.OnNavigatingTo(parameters);
             Title = "Lista de Tarefas";
             GenerateTodoList();
+        }
+
+        private void Novo()
+        {
+            NavigationService.NavigateAsync("TodoCreate");
         }
 
         private void GenerateTodoList()

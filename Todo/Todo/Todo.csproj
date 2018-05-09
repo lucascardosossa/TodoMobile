@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.396" />
+    <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,5 +18,10 @@
     <EmbeddedResource Update="Views\TodoItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Business\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Repository\Interfaces\" />
   </ItemGroup>
 </Project>

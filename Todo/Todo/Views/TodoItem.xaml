@@ -1,65 +1,72 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentView  xmlns="http://xamarin.com/schemas/2014/forms"
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Todo.Views.TodoItem">
-    
+
     <Frame IsClippedToBounds="True"
-         HasShadow="True"
-         BackgroundColor="White" >
+           HasShadow="True"
+           BackgroundColor="White">
         <Frame.OutlineColor>
             <OnPlatform x:TypeArguments="Color"
-                Android="Gray"
-                iOS="Gray"/>
+                        Android="Gray"
+                        iOS="Gray" />
         </Frame.OutlineColor>
         <Frame.Margin>
             <OnPlatform x:TypeArguments="Thickness"
-                Android="10" iOS="10"/>
+                        Android="10" iOS="10" />
         </Frame.Margin>
         <Frame.Padding>
             <OnPlatform x:TypeArguments="Thickness"
-                Android="0" iOS="0"/>
+                        Android="0" iOS="0" />
         </Frame.Padding>
         <StackLayout Orientation="Horizontal">
-            <BoxView Color="{Binding StatusColor}" WidthRequest="8"/>
+            <BoxView Color="{Binding StatusColor}" WidthRequest="8" />
             <Grid VerticalOptions="CenterAndExpand"
-        Padding="0"
-        HorizontalOptions="FillAndExpand"
-        BackgroundColor="Transparent">
+                  Padding="0"
+                  HorizontalOptions="FillAndExpand"
+                  BackgroundColor="Transparent">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label FontAttributes="Bold"
-            Grid.Row="0"
-            HorizontalTextAlignment="Start"
-            VerticalTextAlignment="Center"
-            FontSize="16"
-            Text="{Binding Title, Mode = TwoWay}">
-                    <Label.LineBreakMode>
-                        <OnPlatform x:TypeArguments="LineBreakMode"
-                    Android="NoWrap" iOS="TailTruncation"/>
-                    </Label.LineBreakMode>
-                </Label>
+                <StackLayout Grid.Row="0" Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           Text="{Binding Title, Mode = TwoWay}">
+                        <!--<Label.LineBreakMode>
+                            <OnPlatform x:TypeArguments="LineBreakMode"
+                                        Android="NoWrap" iOS="TailTruncation" />
+                        </Label.LineBreakMode>-->
+                    </Label>
+                    <Button BackgroundColor="Blue" HorizontalOptions="EndAndExpand" Text="Editar" TextColor="White"></Button>
+                </StackLayout>
+                
                 <BoxView Grid.Row="1" Color="Gray"
-                HorizontalOptions="FillAndExpand"
-                HeightRequest="1"/>
-                <Grid Grid.Row="2"
-            BackgroundColor="Transparent"
-            Padding="4">
+                         HorizontalOptions="FillAndExpand"
+                         HeightRequest="1" />
+                <StackLayout Grid.Row="2" Orientation="Horizontal">
+                    <Label Text="{Binding Description, Mode = TwoWay}" />
+                    <Button HorizontalOptions="EndAndExpand" BackgroundColor="Red" Text="Remover" TextColor="White"></Button>
+                </StackLayout>
+                <!--<Grid Grid.Row="2"
+                      BackgroundColor="Transparent"
+                      Padding="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0"
-                Grid.Column="0"
-                Text=""/>
+                           Grid.Column="0"
+                           Text="" />
                     <Label Grid.Row="0"
-                Grid.Column="1"
-                Text="{Binding Description, Mode = TwoWay}"/>
-                </Grid>
+                           Grid.Column="1"
+                           Text="{Binding Description, Mode = TwoWay}" />
+                </Grid>-->
             </Grid>
         </StackLayout>
     </Frame>
-    
+
 </ContentView>

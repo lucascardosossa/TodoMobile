@@ -20,10 +20,19 @@ namespace Todo.ViewModels
 
 		public DelegateCommand NovoCommand { get; set; }
 
+        public DelegateCommand RemoveCommand { get; set; }
+
+
 		public TodoListViewModel(INavigationService navigationService, IPageDialogService dialogService) 
             : base(navigationService, dialogService)
         {
             NovoCommand = new DelegateCommand(Novo);
+            RemoveCommand = new DelegateCommand(Remove);
+        }
+
+        private void Remove()
+        {
+            DialogService.DisplayAlertAsync("Remover", "Deseja remover esta tarefa", "Confirmar", "Cancelar");
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

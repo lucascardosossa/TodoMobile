@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     NavigationPage.HasBackButton="False"
     xmlns:view="clr-namespace:Todo.Views;assembly=Todo"
     x:Class="Todo.Views.TodoList"
-    Title="{Binding Title}" >
+    Title="{Binding Title}">
 
-        <StackLayout Orientation="Vertical">
-            <Button Text="Nova Tarefa" Command="{Binding NovoCommand}" BackgroundColor="Green" 
-                    TextColor="White" Margin="12" HorizontalOptions="FillAndExpand"/>
-            <ListView x:Name="listView"  
-                  RowHeight="120" 
-                  ItemsSource="{Binding TodoCollection}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <view:TodoItem />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+    <StackLayout Orientation="Vertical">
+        <Button Text="Nova Tarefa" Command="{Binding NovoCommand}" BackgroundColor="Green"
+                TextColor="White" Margin="12" HorizontalOptions="FillAndExpand" />
+        <ListView x:Name="listView"
+                  RowHeight="120"
+                  ItemsSource="{Binding TodoCollection}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame IsClippedToBounds="True"
+                               HasShadow="True"
+                               BackgroundColor="White">
+                            <Frame.OutlineColor>
+                                <OnPlatform x:TypeArguments="Color"
+                                            Android="Gray"
+                                            iOS="Gray" />
+                            </Frame.OutlineColor>
+                            <Frame.Margin>
+                                <OnPlatform x:TypeArguments="Thickness"
+                                            Android="10" iOS="10" />
+                            </Frame.Margin>
+                            <Frame.Padding>
+                                <OnPlatform x:TypeArguments="Thickness"
+                                            Android="0" iOS="0" />
+                            </Frame.Padding>
+                            <StackLayout Orientation="Horizontal">
+                                <BoxView Color="{Binding StatusColor}" WidthRequest="8" />
+                                <Grid VerticalOptions="CenterAndExpand"
+                                      Padding="0"
+                                      HorizontalOptions="FillAndExpand"
+                                      BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Row="0" Orientation="Horizontal">
+                                        <Label FontAttributes="Bold"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               Text="{Binding Title, Mode = TwoWay}">
+                                        </Label>
+                                        <Button BackgroundColor="Blue" HorizontalOptions="EndAndExpand" Text="Editar"
+                                                TextColor="White" />
+                                    </StackLayout>
 
-        </StackLayout>
-    
+                                    <BoxView Grid.Row="1" Color="Gray"
+                                             HorizontalOptions="FillAndExpand"
+                                             HeightRequest="1" />
+                                    <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                        <Label Text="{Binding Description, Mode = TwoWay}" />
+                                        <Button HorizontalOptions="EndAndExpand" Command="{Binding RemoveCommand}" CommandParameter="{Binding TodoId}" BackgroundColor="Red" Text="Remover"
+                                                TextColor="White" />
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
 </ContentPage>

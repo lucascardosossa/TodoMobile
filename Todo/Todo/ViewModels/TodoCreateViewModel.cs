@@ -43,7 +43,7 @@ namespace Todo.ViewModels
                 DialogService.DisplayAlertAsync("Sucesso", "Nova tarefa criada", "Ok");
                 NavigationService.GoBackAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 DialogService.DisplayAlertAsync("Erro", "Houve erro ao inserir nova tarefa","ok");
             }

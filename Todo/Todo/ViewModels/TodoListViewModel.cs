@@ -49,6 +49,11 @@ namespace Todo.ViewModels
             TodoCollection = TodoRN.ListarTarefas();
 		}
 
+        private void Remover()
+		{
+			DialogService.DisplayAlertAsync("teste", "teste2", "ok");
+		}
+
 		private void Novo()
         {
             NavigationService.NavigateAsync("TodoCreate");

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Compile Remove="TodoList.xaml.cs" />
+    <Compile Remove="ViewModels\TodoItemViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>

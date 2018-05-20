@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace Todo.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TodoItem : ContentView
+	public partial class TodoItem : ContentPage
     {
 		public TodoItem ()
 		{

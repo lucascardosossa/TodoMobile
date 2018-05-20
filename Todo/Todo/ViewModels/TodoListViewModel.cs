@@ -6,6 +6,7 @@ using Todo.Model.Entidade;
 using Prism.Services;
 using Prism.Commands;
 using Todo.Business;
+using System.Windows.Input;
 
 namespace Todo.ViewModels
 {
@@ -20,19 +21,22 @@ namespace Todo.ViewModels
 
 		public DelegateCommand NovoCommand { get; set; }
 
-        public DelegateCommand RemoveCommand { get; set; }
+        public ICommand ItemTappedCommand { get; set; }
 
 
 		public TodoListViewModel(INavigationService navigationService, IPageDialogService dialogService) 
             : base(navigationService, dialogService)
         {
             NovoCommand = new DelegateCommand(Novo);
-            RemoveCommand = new DelegateCommand(Remove);
+            ItemTappedCommand = new DelegateCommand<object>(ItemTapped);
         }
 
-        private void Remove()
+        private void ItemTapped(object todo)
         {
-            DialogService.DisplayAlertAsync("Remover", "Deseja remover esta tarefa", "Confirmar", "Cancelar");
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("model", todo);
+            NavigationService.NavigateAsync("TodoItem", navigationParams);
+
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -47,11 +51,6 @@ namespace Todo.ViewModels
 		{
 			base.OnNavigatedFrom(parameters);
             TodoCollection = TodoRN.ListarTarefas();
-		}
-
-        private void Remover()
-		{
-			DialogService.DisplayAlertAsync("teste", "teste2", "ok");
 		}
 
 		private void Novo()

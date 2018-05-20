@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     NavigationPage.HasBackButton="False"
     xmlns:view="clr-namespace:Todo.Views;assembly=Todo"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
     x:Class="Todo.Views.TodoList"
     Title="{Binding Title}">
 
@@ -14,6 +15,10 @@
         <ListView x:Name="listView"
                   RowHeight="120"
                   ItemsSource="{Binding TodoCollection}">
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"
+                                      EventArgsParameterPath="Item" />
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -50,17 +55,13 @@
                                                VerticalTextAlignment="Center"
                                                Text="{Binding Title, Mode = TwoWay}">
                                         </Label>
-                                        <Button BackgroundColor="Blue" HorizontalOptions="EndAndExpand" Text="Editar"
-                                                TextColor="White" />
-                                    </StackLayout>
+                                     </StackLayout>
 
                                     <BoxView Grid.Row="1" Color="Gray"
                                              HorizontalOptions="FillAndExpand"
                                              HeightRequest="1" />
                                     <StackLayout Grid.Row="2" Orientation="Horizontal">
                                         <Label Text="{Binding Description, Mode = TwoWay}" />
-                                        <Button HorizontalOptions="EndAndExpand" Command="{Binding RemoveCommand}" CommandParameter="{Binding TodoId}" BackgroundColor="Red" Text="Remover"
-                                                TextColor="White" />
                                     </StackLayout>
                                 </Grid>
                             </StackLayout>

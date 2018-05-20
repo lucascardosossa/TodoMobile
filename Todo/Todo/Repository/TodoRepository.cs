@@ -24,14 +24,14 @@ namespace Todo.Repository
             conexaoSQLite.Insert(todo);
         }
 
-        public void AtualizarTarefa(TodoDTO todo)
+        public bool AtualizarTarefa(TodoDTO todo)
         {
-            conexaoSQLite.Update(todo);
+            return conexaoSQLite.Update(todo) > 0;
         }
 
-        public void DeletarTarefa(TodoDTO todo)
+        public bool DeletarTarefa(TodoDTO todo)
         {
-            conexaoSQLite.Delete(todo);
+            return conexaoSQLite.Delete(todo) > 0;
         }
 
         public TodoDTO GetTarefa(int codigo)

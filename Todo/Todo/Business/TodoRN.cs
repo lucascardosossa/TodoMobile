@@ -41,5 +41,35 @@ namespace Todo.Business
                 throw;
             }
         }
+
+        public static bool Atualizar(TodoDTO todo)
+        {
+            try
+            {
+                using(var query = new TodoRepository())
+                {
+                    return query.AtualizarTarefa(todo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool Remover(TodoDTO todo)
+        {
+            try
+            {
+                using(var query = new TodoRepository())
+                {
+                    return query.DeletarTarefa(todo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
